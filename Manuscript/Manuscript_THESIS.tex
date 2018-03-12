@@ -1,0 +1,268 @@
+%----------------------------------------------------------------------------------------
+%   DESCRIPTION OF THE ASSIGNMENT OR REPORT
+%----------------------------------------------------------------------------------------
+% BEGIN_FOLD
+% !!! WARNING COPY WITH mcode FILE !!!
+% This title page is capable of being compiled as is. This is not useful for 
+% including it in another document. To do this, you have two options: 
+%
+% 1) Copy/paste everything between \begin{document} and \end{document} 
+% starting at \begin{titlepage} and paste this into another LaTeX file where you 
+% want your title page.
+% OR
+% 2) Remove everything outside the \begin{titlepage} and \end{titlepage} and 
+% move this file to the same directory as the LaTeX file you wish to add it to. 
+% Then add \input{./title_page_1.tex} to your LaTeX file where you want your
+% title page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title{Title page with logo}
+%END_FOLD
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc} %encoding
+\usepackage[toc,page]{appendix} %Appendix handling 
+%\usepackage[a4paper, margin=0.7in]{geometry} if you want to set margins
+\usepackage{geometry} %for changing margins for selected pages only
+\usepackage{setspace} %for changing line spacing for selected paragraphs use: \begin{spacing}{1.5} *TEXT* \end{spacing}
+\usepackage{amssymb} %for more symbols
+\usepackage{graphicx} 
+\usepackage[colorinlistoftodos]{todonotes} %side notes
+\usepackage{float}%float objects around
+				 % for text sub/superscripts: \textsuperscript{...} or  \textsubscript{...}
+\usepackage{booktabs} %For tables imported from Excel
+\usepackage{multirow} %For tables imported from Excel
+\usepackage{colortbl} %For color tables imported from Excel
+\usepackage{xcolor} %For color tables imported from Excel
+\usepackage{rotating} %For color tables imported from Excel
+\usepackage[nottoc]{tocbibind} %For bibliography listing in ToC
+
+%MATLAB Listings
+\usepackage[numbered, framed]{mcode} %For Matlab code listings
+\lstset{stepnumber  = 5, % Line numbers go in steps of 4
+	breaklines  = true,
+	breakautoindent=true, 
+	breakindent=10pt,
+	breakatwhitespace   = false,
+	prebreak= \space,
+	postbreak   = \space}
+
+% Usage: 
+%in-text listing: \mcode{}
+%Frame listing: environment \begin{lstlisting}[caption=Example caption\label{tag}] \end{lstlisting}
+
+%From file: \lstinputlisting{/path_to_mfile/my_mfile.m}
+%list of listings: \lstlistoflistings
+
+% NOMENCLATURE This code creates the groups for NOMENCLATURE
+% ----------------------------------------------------------------------------
+\usepackage[intoc]{nomencl}% for symbol nomenclature
+\makenomenclature
+
+\usepackage{etoolbox}
+\renewcommand\nomgroup[1]{%
+	\item[\bfseries
+	\ifstrequal{#1}{C}{Physics Constants}{%
+	\ifstrequal{#1}{A}{Abbreviations}{%
+	\ifstrequal{#1}{G}{Greek Symbols}{%
+	\ifstrequal{#1}{S}{Roman Symbols}{}}}}%
+	]}
+
+% This will add the units
+%----------------------------------------------
+\newcommand{\nomunit}[1]{%
+	\renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+%----------------------------------------------
+
+%example in-text commands for the nomenclature:
+
+%\nomenclature[C]{$h$}{Plank Constant
+%	\nomunit{$6.62607 \times 10^{-34}\, Js$}}
+%%
+
+
+% HYPERLINKS AND PDF METADATA
+
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage[
+pdftex,
+colorlinks=false, %set true if you want colored links
+linktoc=all,     %set to all if you want both sections and subsections linked
+linkcolor=blue,  %choose some color if you want links to stand out
+hidelinks,		%to make the cross references invisible (red frames)
+]{hyperref}
+\hypersetup{
+	pdfauthor={Jakub Włodarczyk},
+	pdftitle={Master Thesis},
+	%% pdfsubject={The Subject},
+	%% pdfkeywords={Some Keywords},
+	pdfproducer={Latex},
+	pdfcreator={pdflatex}
+}
+\usepackage{amsmath} %math script handling
+\usepackage{cleveref} %for full name of the reference as a hyperlink, e.g. "Figure 3" instead of just "3". Use \cref{label} to get the reference
+
+
+%% more info on floats and figues:  https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+
+\begin{document}
+
+\begin{titlepage}
+\newgeometry{left=1cm, right=1cm}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+\numberwithin{equation}{section} %to number equations with respect to the section number
+ 
+%----------------------------------------------------------------------------------------
+%   HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE KTH Royal Institute of Technology}\\[1cm] % Name of your university/college
+\begin{spacing}{1.5}
+\textsc{\LARGE ZHAW Z\"urich University of Applied Sciences}\\[0.5cm] % Name of your university/college
+\end{spacing}
+\textsc{\Large Institute of Computational Physics}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+
+
+
+%----------------------------------------------------------------------------------------
+%   TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \Huge  \bfseries Master Thesis }\\[0.1cm] % Title of your document
+\HRule \\[1cm]
+ 
+%----------------------------------------------------------------------------------------
+%   AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[b]{0.3\textwidth}
+	\large
+	\emph{Author:}\\
+	Jakub \textsc{Włodarczyk} % Your name
+\end{minipage}
+\begin{minipage}[b]{0.35\textwidth}
+	\large
+	\emph{Supervisor ZHAW:} \\
+	Prof. J\"urgen \textsc{Schumacher} % Supervisor's Name
+\end{minipage}
+\begin{minipage}[b]{0.3\textwidth}
+	\large
+	\emph{Supervisor KTH:} \\
+	Prof. G\"oran \textsc{Lindbergh} % Supervisor's Name
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%\textsc{jakub włodarczyk}\\
+%\small 930907-1455 \quad jakubw@kth.se\\[1.5cm]
+%
+%----------------------------------------------------------------------------------------
+%   DATE SECTION
+%----------------------------------------------------------------------------------------
+\large Winterthur, Switzerland\\
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%   LOGO SECTION
+%----------------------------------------------------------------------------------------
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=4.3cm]{Figures/_Frontpage/Kth_logo.png}  
+\end{minipage} 
+\begin{minipage}{0.2\textwidth}
+\includegraphics[width=4.3cm]{Figures/_Frontpage/ZHAW_Logo.png}  
+\end{minipage}
+\end{center}
+%----------------------------------------------------------------------------------------
+
+%\vfill % Fill the rest of the page with whitespace
+\restoregeometry
+\end{titlepage}
+
+
+\begin{abstract}
+Your abstract.
+\end{abstract}
+
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+
+\setcounter{page}{1}
+
+
+\section{Introduction}
+\nomenclature[A]{CFD}{Computational Fluid Dynamics}
+A cite: \cite{my_cool_citekey}
+A cite2: \cite{my_cool_citekey2}
+\section{Overview of Redox Flow Batteries}
+
+\subsection{Principles of operation}
+\subsection{Battery Types}
+\subsection{Materials}
+\subsection{Performance}
+\subsection{State of the Art}
+\subsection{Challenges}
+
+\section{Model Formulation}
+\subsection{Theoretical Background}
+\subsubsection{Electrochemistry}
+\subsubsection{...}
+\subsection{Parametrization}
+\subsection{Numerical Implementation}
+
+\section{Results and Discussion}
+\subsection{Modeling Results}
+\subsection{Validation and Discussion}
+\subsection{Future Development}
+
+
+%APPENDICES:
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{section}{Appendices}
+%\appendix
+
+%\section{Matlab Code}\label{App:AppendixA}
+%	Text of Appendix A
+
+%NOMENCLATURE:
+
+\newpage
+\scriptsize
+\printnomenclature
+
+% WARNING! to create nomenclature run this set of commands in cmd.exe (earlier: cd command):
+
+%pdflatex <documentname>.tex
+%makeindex <documentname>.nlo -s nomencl.ist -o <documentname>.nls
+%pdflatex <documentname>.tex
+
+%or use user-defined user command for build:
+%first build normally
+%build with 1: Make Nomenclature (Alt+Shift+F1)
+%build normally once again
+
+% -------------------------------------------------------------------------------
+% BIBLIOGRAPHY, uncomment these three:
+\newpage
+\bibliographystyle{abbrv}
+\bibliography{JWMasterThesis} %name of .bib file
+% Visit http://truben.no/latex/bibtex/# for manual bibtex entry
+
+%in text use \cite
+% -------------------------------------------------------------------------------
+
+
+\end{document}
+              
